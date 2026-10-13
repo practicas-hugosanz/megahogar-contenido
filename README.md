@@ -16,6 +16,26 @@ pides a Claude)    nueva                      de comprobación          a "appro
 
 Nada se publica sin que alguien lo haya aprobado fusionando el Pull Request.
 
+## Instalación en el ordenador de tu socio (Windows)
+
+Con esto, desde su propio Claude basta con decir *"hazme un reel de megahogar de..."* y Claude hace el Reel como en este proyecto.
+
+```powershell
+git clone https://github.com/practicas-hugosanz/megahogar-contenido.git
+cd megahogar-contenido
+powershell -ExecutionPolicy Bypass -File instalar.ps1
+```
+
+El instalador (léelo antes si quieres: `instalar.ps1`):
+1. Comprueba Git, Node.js 22, Python 3 y FFmpeg, y **pregunta** antes de instalar cada uno con winget.
+2. Descarga el proyecto en `Documentos\Megahogar\megahogar-contenido`.
+3. Instala las herramientas de vídeo (HyperFrames) y, si aceptas, el modelo de voz local y los clips de stock.
+4. Añade a Claude la habilidad `megahogar-reel` (en `~\.claude\skills`), que le lleva al proyecto y le hace seguir `CLAUDE.md`.
+
+Después, solo falta **conectar ElevenLabs** en Claude (Ajustes > Conectores) con su cuenta. No pide ni guarda claves y no publica nada en Instagram.
+
+Opciones: `-Yes` (no pregunta), `-SinModelos`, `-SinClips`, `-Destino <carpeta>` y `-Simular` (solo muestra lo que haría).
+
 ## Cómo crear un Reel nuevo
 
 1. Clona el repositorio y ábrelo en **Claude Code** (app de escritorio o terminal). Claude lee `CLAUDE.md` y ya conoce la marca, el formato y las reglas.
