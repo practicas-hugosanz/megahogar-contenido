@@ -17,6 +17,7 @@ fs.mkdirSync(path.join(out, "videos"), { recursive: true });
 // Panel
 fs.cpSync(path.join(root, "docs"), out, { recursive: true });
 fs.copyFileSync(path.join(root, "megahogar-reels", "assets", "logo-megahogar.png"), path.join(out, "logo.png"));
+fs.copyFileSync(path.join(root, "Instalar-Megahogar.bat"), path.join(out, "Instalar-Megahogar.bat"));
 
 // Cola y vídeos (los vídeos se referencian relativos a megahogar-reels/)
 const queue = JSON.parse(fs.readFileSync(queueFile, "utf8"));

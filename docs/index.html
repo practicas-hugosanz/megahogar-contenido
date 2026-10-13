@@ -514,6 +514,36 @@
         margin: 8px 0 0;
         color: var(--muted);
       }
+      .hero-install {
+        background: linear-gradient(135deg, var(--navy), var(--navy-2));
+        color: #fff;
+        border-radius: var(--radius);
+        padding: 24px;
+        box-shadow: var(--shadow);
+        margin-bottom: 18px;
+      }
+      .hero-install h3 {
+        margin: 0 0 6px;
+        font-size: 1.25rem;
+      }
+      .hero-install p {
+        margin: 0 0 16px;
+        color: #dfe5ff;
+      }
+      .btn.big {
+        font-size: 1.05rem;
+        padding: 14px 24px;
+      }
+      code.cmd {
+        display: block;
+        background: #0e1329;
+        color: #eaf0ff;
+        padding: 12px 14px;
+        border-radius: 10px;
+        font-size: 0.82rem;
+        word-break: break-all;
+        margin: 8px 0;
+      }
       .toast {
         position: fixed;
         left: 50%;
@@ -554,6 +584,7 @@
         <nav role="tablist" aria-label="Secciones">
           <button role="tab" aria-selected="true" data-tab="calendario">Calendario</button>
           <button role="tab" aria-selected="false" data-tab="crear">Crear un Reel</button>
+          <button role="tab" aria-selected="false" data-tab="instalar">Instalar</button>
           <button role="tab" aria-selected="false" data-tab="config">Puesta en marcha</button>
           <button role="tab" aria-selected="false" data-tab="ayuda">Ayuda</button>
         </nav>
@@ -628,6 +659,43 @@
 
         <h2>Peticiones listas para copiar</h2>
         <div id="prompts"></div>
+      </section>
+
+      <!-- INSTALAR -->
+      <section id="tab-instalar" hidden>
+        <h2>Instalar en tu ordenador</h2>
+        <div class="hero-install">
+          <h3>Crea Reels desde tu propio Claude</h3>
+          <p>Con esto, solo tendrás que decirle a Claude <b>“hazme un reel de megahogar de…”</b> y lo hará como en este proyecto. Para Windows.</p>
+          <a class="btn light big" id="dl-bat" href="Instalar-Megahogar.bat" download>Descargar instalador</a>
+        </div>
+        <div class="card">
+          <h3>Cómo se usa</h3>
+          <ol class="steps">
+            <li><div><b>Descarga y abre el instalador</b><span>Doble clic en <code>Instalar-Megahogar.bat</code>. Si Windows avisa de que es un archivo desconocido, pulsa “Más información” y “Ejecutar de todas formas”: es normal en archivos sin firma.</span></div></li>
+            <li><div><b>Contesta las preguntas</b><span>Pregunta antes de instalar cada programa que falte (Git, Node.js, Python, FFmpeg). Si dudas con el modelo de voz y los clips, di que sí.</span></div></li>
+            <li><div><b>Conecta ElevenLabs en Claude</b><span>Ajustes › Conectores › ElevenLabs, con tu cuenta. Es el único paso que no puede hacer el instalador, y es para la voz.</span></div></li>
+            <li><div><b>Reinicia Claude y pídelo</b><span>Por ejemplo: <i>“Hazme un reel de megahogar sobre cómo elegir una aspiradora”</i>. Claude propone el guion, pide permiso antes de descargar clips y deja el vídeo y el caption para revisar.</span></div></li>
+          </ol>
+        </div>
+        <div class="card">
+          <h3>Qué instala exactamente</h3>
+          <p style="margin:0 0 6px">Descarga y ejecuta el script <a id="ps1-link" href="#" target="_blank" rel="noopener">instalar.ps1</a> (puedes leerlo antes). Hace esto:</p>
+          <ul style="margin:6px 0 0; padding-left:20px; color: var(--muted)">
+            <li>Instala Git, Node.js 22, Python 3 y FFmpeg si faltan, con tu permiso (winget).</li>
+            <li>Descarga el proyecto en <code>Documentos\Megahogar\megahogar-contenido</code>.</li>
+            <li>Instala las herramientas de vídeo, y si aceptas, el modelo de voz local y los clips de stock.</li>
+            <li>Añade a Claude la habilidad <code>megahogar-reel</code>.</li>
+          </ul>
+          <p style="margin:12px 0 0">No pide ni guarda contraseñas ni claves, y no publica nada en Instagram.</p>
+        </div>
+        <div class="card">
+          <h3>¿Prefieres hacerlo desde PowerShell?</h3>
+          <p style="margin:0 0 6px; color: var(--muted)">Es lo mismo que hace el botón. Pega esto en una ventana de PowerShell:</p>
+          <code class="cmd" id="ps-cmd"></code>
+          <button class="btn ghost" type="button" id="copy-cmd">Copiar comando</button>
+          <p style="margin:12px 0 0; color: var(--muted); font-size:.9rem">Solo Windows por ahora. Si usas Mac, díselo a Claude y adaptará el instalador.</p>
+        </div>
       </section>
 
       <!-- CONFIG -->
@@ -754,7 +822,7 @@
           document.querySelectorAll("nav button").forEach(function (b) {
             b.setAttribute("aria-selected", String(b.dataset.tab === name));
           });
-          ["calendario", "crear", "config", "ayuda"].forEach(function (t) {
+          ["calendario", "crear", "instalar", "config", "ayuda"].forEach(function (t) {
             $("tab-" + t).hidden = t !== name;
           });
           history.replaceState(null, "", "#" + name);
@@ -1049,6 +1117,15 @@
           if (cfg && cfg.repo) repo = cfg.repo;
           $("repo-link").href = "https://github.com/" + repo;
           $("issue-link").href = "https://github.com/" + repo + "/issues/new?template=nuevo-reel.yml";
+          $("ps1-link").href = "https://github.com/" + repo + "/blob/main/instalar.ps1";
+          var cmd =
+            "powershell -NoProfile -ExecutionPolicy Bypass -Command \"irm https://raw.githubusercontent.com/" +
+            repo +
+            "/main/instalar.ps1 -OutFile instalar-megahogar.ps1; powershell -ExecutionPolicy Bypass -File ./instalar-megahogar.ps1\"";
+          $("ps-cmd").textContent = cmd;
+          $("copy-cmd").addEventListener("click", function () {
+            copy(cmd);
+          });
           renderPrompts();
           renderSetup();
           renderDocs();
@@ -1078,7 +1155,7 @@
               $("items").appendChild(el("div", { class: "empty", text: "No se pudo cargar la cola de publicación. Recarga la página en unos minutos." }));
             });
           var h = location.hash.replace("#", "");
-          if (["calendario", "crear", "config", "ayuda"].indexOf(h) >= 0) showTab(h);
+          if (["calendario", "crear", "instalar", "config", "ayuda"].indexOf(h) >= 0) showTab(h);
         }
         fetch("site.json", { cache: "no-store" })
           .then(function (r) {

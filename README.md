@@ -18,6 +18,8 @@ Nada se publica sin que alguien lo haya aprobado fusionando el Pull Request.
 
 ## Instalación en el ordenador de tu socio (Windows)
 
+**Lo más fácil:** en el [panel](https://practicas-hugosanz.github.io/megahogar-contenido/#instalar), pestaña **Instalar**, pulsa **Descargar instalador** y haz doble clic en `Instalar-Megahogar.bat`. Es equivalente a lo de abajo.
+
 Con esto, desde su propio Claude basta con decir *"hazme un reel de megahogar de..."* y Claude hace el Reel como en este proyecto.
 
 ```powershell
