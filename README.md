@@ -3,6 +3,14 @@
 Todo lo necesario para crear, revisar y publicar los Reels de **@megahogar.es** con ayuda de Claude.
 Claude escribe el guion, genera la voz, monta el vídeo con clips reales y prepara la publicación. Vosotros revisáis y aprobáis.
 
+<p align="center">
+  <a href="https://github.com/practicas-hugosanz/megahogar-contenido/releases/latest/download/Instalar-Megahogar.bat">
+    <img alt="Descargar instalador para Windows" src="https://img.shields.io/badge/%E2%AC%87%20Descargar%20instalador-Windows-E8541E?style=for-the-badge&labelColor=1F2D5F" />
+  </a>
+</p>
+
+<p align="center"><sub>Haz doble clic en <code>Instalar-Megahogar.bat</code> y sigue las preguntas. Después, en Claude: <i>"hazme un reel de megahogar de..."</i>. Si Windows avisa de que es un archivo desconocido: Más información > Ejecutar de todas formas.</sub></p>
+
 **Panel de seguimiento:** https://practicas-hugosanz.github.io/megahogar-contenido/ (calendario, vídeos, captions, siguiente paso y guía de puesta en marcha).
 
 ## El flujo en 5 pasos
