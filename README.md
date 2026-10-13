@@ -3,6 +3,8 @@
 Todo lo necesario para crear, revisar y publicar los Reels de **@megahogar.es** con ayuda de Claude.
 Claude escribe el guion, genera la voz, monta el vídeo con clips reales y prepara la publicación. Vosotros revisáis y aprobáis.
 
+**Panel de seguimiento:** https://practicas-hugosanz.github.io/megahogar-contenido/ (calendario, vídeos, captions, siguiente paso y guía de puesta en marcha).
+
 ## El flujo en 5 pasos
 
 ```
@@ -33,6 +35,7 @@ Nada se publica sin que alguien lo haya aprobado fusionando el Pull Request.
 | `megahogar-directo/` | **Reels de tips con vídeo real, voz y sonido.** Plantilla principal. |
 | `megahogar-reels/` | Reels de ofertas (precio y descuento) y la herramienta que publica en Instagram (`publish/`). |
 | `megahogar-carrusel/` | Carrusel de 6 diapositivas del tamaño de TV (se sube a mano). |
+| `docs/` y `scripts/` | El panel web (se publica solo en GitHub Pages) y el script que lo construye. |
 | `.github/` | Comprobaciones, publicación automática, recordatorio del token y plantillas. |
 
 ## Configurar una vez
