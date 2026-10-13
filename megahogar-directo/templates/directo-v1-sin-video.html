@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #1f2d5f;
+      }
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        font-family: "Oswald", sans-serif;
+        font-weight: 700;
+        text-transform: uppercase;
+        --navy: #1f2d5f;
+        --orange: #e8541e;
+        --sky: #bfcfff;
+      }
+      .beat {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+      }
+      .b1 {
+        background: var(--orange);
+        color: #fff;
+        z-index: 1;
+      }
+      .b2 {
+        background: var(--navy);
+        color: #fff;
+        z-index: 2;
+        clip-path: inset(0 0 100% 0);
+      }
+      .b3 {
+        background: #fff;
+        color: var(--navy);
+        z-index: 3;
+        clip-path: inset(0 100% 0 0);
+      }
+      .b4 {
+        background: var(--sky);
+        color: var(--navy);
+        z-index: 4;
+        clip-path: inset(100% 0 0 0);
+      }
+      .b5 {
+        background: var(--navy);
+        color: #fff;
+        z-index: 5;
+        clip-path: inset(0 0 0 100%);
+      }
+      .line {
+        position: absolute;
+        left: 70px;
+        width: 940px;
+        line-height: 0.98;
+      }
+      .w {
+        display: inline-block;
+        margin-right: 0.22em;
+        transform-origin: left bottom;
+      }
+      .tag {
+        position: absolute;
+        left: 70px;
+        background: var(--orange);
+        color: #fff;
+        font-size: 64px;
+        line-height: 1;
+        padding: 14px 30px 12px;
+        transform: rotate(-4deg);
+        transform-origin: left center;
+      }
+      .tag.navy {
+        background: var(--navy);
+      }
+      .small {
+        font-weight: 400;
+        text-transform: none;
+        line-height: 1.15;
+      }
+      /* Tachado y subrayado marcador */
+      .strike-wrap {
+        position: relative;
+        display: inline-block;
+      }
+      .strike {
+        position: absolute;
+        left: -10px;
+        top: 52%;
+        height: 16px;
+        width: 0;
+        background: var(--orange);
+        border-radius: 8px;
+      }
+      .hl {
+        position: relative;
+        display: inline-block;
+        isolation: isolate;
+      }
+      .hl::before {
+        content: "";
+        position: absolute;
+        left: -14px;
+        right: -14px;
+        top: 18%;
+        bottom: 6%;
+        background: var(--orange);
+        z-index: -1;
+        transform: scaleX(var(--hl, 0)) rotate(-1.2deg);
+        transform-origin: left center;
+      }
+      #hlword {
+        color: #fff;
+      }
+      .handle {
+        position: absolute;
+        left: 70px;
+        background: #fff;
+        color: var(--orange);
+        font-size: 100px;
+        line-height: 1.1;
+        padding: 6px 34px 4px;
+        text-transform: none;
+        transform: rotate(-3deg);
+        transform-origin: left center;
+      }
+      #logo {
+        position: absolute;
+        left: 70px;
+        width: 440px;
+      }
+      #prod {
+        position: absolute;
+        right: 40px;
+        width: 290px;
+        height: 410px;
+        object-fit: contain;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="13.2"
+      data-width="1080"
+      data-height="1920"
+    >
+      <!-- 1 · Gancho -->
+      <div class="beat b1" id="beat1">
+        <div class="line" style="top: 430px; font-size: 190px">
+          <span class="w">¿Tu</span><span class="w">lavadora</span><span class="w">huele</span><span class="w">a</span
+          ><span class="w">humedad?</span>
+        </div>
+      </div>
+
+      <!-- 2 · Giro -->
+      <div class="beat b2" id="beat2">
+        <div class="tag" id="spoiler" style="top: 560px">Spoiler</div>
+        <div class="line" style="top: 700px; font-size: 205px">
+          <span class="w" id="no">No</span><span class="w">es</span><span class="w">la</span
+          ><span class="w">lavadora.</span>
+        </div>
+      </div>
+
+      <!-- 3 · El error -->
+      <div class="beat b3" id="beat3">
+        <div class="small line" style="top: 420px; font-size: 80px; font-weight: 400" id="b3a">Es que cierras</div>
+        <div class="line" style="top: 520px; font-size: 175px">
+          <span class="strike-wrap" id="sw"
+            ><span class="w">la</span><span class="w">puerta</span><span class="strike" id="strike"></span
+          ></span>
+        </div>
+        <div class="line" style="top: 700px; font-size: 175px" id="b3c"><span class="w" style="margin-right:0">del todo.</span></div>
+        <div class="small line" style="top: 1020px; font-size: 80px; font-weight: 400" id="b3d">Déjala</div>
+        <div class="line" style="top: 1120px; font-size: 150px">
+          <span class="hl" id="hl"><span id="hlword">entreabierta.</span></span>
+        </div>
+      </div>
+
+      <!-- 4 · El truco -->
+      <div class="beat b4" id="beat4">
+        <div class="small line" style="top: 380px; font-size: 88px; font-weight: 400" id="b4a">Y una vez al mes:</div>
+        <div class="line" style="top: 500px; font-size: 190px" id="b4b">
+          <span class="w">Lavado</span><span class="w">en</span><span class="w">caliente</span>
+        </div>
+        <div class="line" style="top: 1120px; font-size: 170px; color: var(--navy)" id="b4c">
+          <span class="w">sin</span><span class="w">ropa.</span>
+        </div>
+        <img id="prod" src="assets/bosch-wuu28t63es.png" alt="" style="top: 1130px; right: 40px; opacity: 0" />
+      </div>
+
+      <!-- 5 · Cierre -->
+      <div class="beat b5" id="beat5">
+        <div class="line" style="top: 380px; font-size: 230px" id="b5a">
+          <span class="w">Guarda</span><span class="w">esto.</span>
+        </div>
+        <div class="small line" style="top: 840px; font-size: 76px; font-weight: 400" id="b5b">
+          Tu nariz te lo agradecerá.
+        </div>
+        <div class="handle" id="handle" style="top: 1100px">@megahogar.es</div>
+        <img id="logo" src="assets/logo-megahogar.png" alt="Megahogar Electrodomésticos" style="top: 1300px" />
+      </div>
+
+      <!-- Sonido -->
+      <audio id="sfx-pop1" src="assets/sfx/pop.mp3" data-start="0.2" data-duration="0.6" data-track-index="1" data-volume="0.8"></audio>
+      <audio id="sfx-pop2" src="assets/sfx/pop.mp3" data-start="0.5" data-duration="0.6" data-track-index="2" data-volume="0.7"></audio>
+      <audio id="sfx-pop3" src="assets/sfx/pop.mp3" data-start="0.8" data-duration="0.6" data-track-index="3" data-volume="0.7"></audio>
+      <audio id="sfx-whoosh1" src="assets/sfx/whoosh-short.mp3" data-start="2.3" data-duration="0.57" data-track-index="4" data-volume="0.8"></audio>
+      <audio id="sfx-impact1" src="assets/sfx/impact-bass-1.mp3" data-start="2.95" data-duration="2.1" data-track-index="5" data-volume="0.9"></audio>
+      <audio id="sfx-whoosh2" src="assets/sfx/whoosh-short.mp3" data-start="4.45" data-duration="0.57" data-track-index="6" data-volume="0.8"></audio>
+      <audio id="sfx-click1" src="assets/sfx/click.mp3" data-start="5.7" data-duration="0.37" data-track-index="7" data-volume="1"></audio>
+      <audio id="sfx-ping1" src="assets/sfx/ping.mp3" data-start="7.2" data-duration="1.2" data-track-index="8" data-volume="0.7"></audio>
+      <audio id="sfx-whoosh3" src="assets/sfx/whoosh-short.mp3" data-start="7.5" data-duration="0.57" data-track-index="9" data-volume="0.8"></audio>
+      <audio id="sfx-impact2" src="assets/sfx/impact-bass-1.mp3" data-start="8.2" data-duration="2.1" data-track-index="10" data-volume="0.8"></audio>
+      <audio id="sfx-whoosh4" src="assets/sfx/whoosh-short.mp3" data-start="10.25" data-duration="0.57" data-track-index="11" data-volume="0.8"></audio>
+      <audio id="sfx-sparkle" src="assets/sfx/sparkle.mp3" data-start="11.4" data-duration="1.7" data-track-index="12" data-volume="0.7"></audio>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      /* 1 · Gancho (0–2.5) */
+      const w1 = "#beat1 .w";
+      tl.from(w1, { y: 160, opacity: 0, rotation: 6, duration: 0.35, ease: "back.out(2)", stagger: 0.14 }, 0.15);
+      tl.to("#beat1 .line", { x: 6, duration: 0.05, yoyo: true, repeat: 5, ease: "none" }, 1.2);
+
+      /* 2 · Giro (2.4–4.6) */
+      tl.to("#beat2", { clipPath: "inset(0 0 0% 0)", duration: 0.45, ease: "power3.inOut" }, 2.35);
+      tl.from("#spoiler", { x: -500, duration: 0.4, ease: "back.out(1.6)" }, 2.7);
+      tl.from("#beat2 .w", { y: 140, opacity: 0, duration: 0.3, ease: "back.out(2)", stagger: 0.12 }, 2.95);
+      tl.fromTo("#no", { scale: 1 }, { scale: 1.12, duration: 0.15, yoyo: true, repeat: 1, ease: "power2.out" }, 3.0);
+      tl.to("#beat2 .line", { x: -5, duration: 0.05, yoyo: true, repeat: 5, ease: "none" }, 3.05);
+
+      /* 3 · El error (4.5–7.6) */
+      tl.to("#beat3", { clipPath: "inset(0 0% 0 0)", duration: 0.45, ease: "power3.inOut" }, 4.45);
+      tl.from("#b3a", { y: 40, opacity: 0, duration: 0.35, ease: "power3.out" }, 4.9);
+      tl.from("#sw .w", { y: 120, opacity: 0, duration: 0.3, ease: "back.out(2)", stagger: 0.12 }, 5.1);
+      tl.from("#b3c .w", { y: 120, opacity: 0, duration: 0.3, ease: "back.out(2)" }, 5.45);
+      tl.to("#strike", { width: "108%", duration: 0.3, ease: "power2.out" }, 5.7);
+      tl.from("#b3d", { y: 40, opacity: 0, duration: 0.35, ease: "power3.out" }, 6.2);
+      tl.set("#hl", { "--hl": 0 }, 0);
+      tl.to("#hl", { "--hl": 1, duration: 0.35, ease: "power2.out" }, 6.55);
+      tl.from("#hlword", { y: 100, opacity: 0, duration: 0.35, ease: "back.out(2)" }, 6.5);
+
+      /* 4 · El truco (7.4–10.2) */
+      tl.to("#beat4", { clipPath: "inset(0% 0 0 0)", duration: 0.45, ease: "power3.inOut" }, 7.45);
+      tl.from("#b4a", { y: 40, opacity: 0, duration: 0.35, ease: "power3.out" }, 7.9);
+      tl.from("#b4b .w", { y: 140, opacity: 0, duration: 0.3, ease: "back.out(2)", stagger: 0.12 }, 8.2);
+      tl.from("#b4c .w", { y: 100, opacity: 0, duration: 0.3, ease: "back.out(2)", stagger: 0.14 }, 8.85);
+      tl.fromTo("#prod", { opacity: 0, y: 120, rotation: 6 }, { opacity: 1, y: 0, rotation: 0, duration: 0.45, ease: "back.out(1.6)" }, 9.0);
+
+      /* 5 · Cierre (10.2–13.2) */
+      tl.to("#beat5", { clipPath: "inset(0 0 0 0%)", duration: 0.45, ease: "power3.inOut" }, 10.25);
+      tl.from("#b5a .w", { y: 160, opacity: 0, rotation: -5, duration: 0.35, ease: "back.out(2)", stagger: 0.15 }, 10.7);
+      tl.from("#b5b", { y: 40, opacity: 0, duration: 0.4, ease: "power3.out" }, 11.25);
+      tl.from("#handle", { scale: 0.6, opacity: 0, duration: 0.45, ease: "back.out(2)" }, 11.5);
+      tl.from("#logo", { y: 40, opacity: 0, duration: 0.45, ease: "power3.out" }, 11.9);
+
+      /* Oculta cada bloque cuando el siguiente ya lo ha tapado */
+      tl.set("#beat1", { visibility: "hidden" }, 2.9);
+      tl.set("#beat2", { visibility: "hidden" }, 5.0);
+      tl.set("#beat3", { visibility: "hidden" }, 8.0);
+      tl.set("#beat4", { visibility: "hidden" }, 10.8);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+name: Idea de Reel
+description: Propón un tema para un nuevo Reel
+title: "Reel: "
+labels: ["idea"]
+body:
+  - type: input
+    id: tema
+    attributes:
+      label: Tema
+      description: Por ejemplo, "Cómo elegir una aspiradora"
+    validations:
+      required: true
+  - type: textarea
+    id: puntos
+    attributes:
+      label: Consejos o datos que deben salir
+      description: Lo que sabe la tienda y que hay que respetar (sin inventar cifras)
+  - type: input
+    id: producto
+    attributes:
+      label: Producto o categoría de la tienda a destacar
+  - type: input
+    id: fecha
+    attributes:
+      label: Fecha deseada de publicación

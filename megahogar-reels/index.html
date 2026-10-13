@@ -1,0 +1,338 @@
+<!doctype html>
+<html
+  lang="es"
+  data-resolution="portrait"
+  data-composition-variables='[
+    {"id":"category","type":"string","label":"Categoría","default":"Frigorífico"},
+    {"id":"brand","type":"string","label":"Marca","default":"Balay"},
+    {"id":"model","type":"string","label":"Modelo","default":"3KFE753XI"},
+    {"id":"chip1","type":"string","label":"Spec 1","default":"203x60 cm"},
+    {"id":"chip2","type":"string","label":"Spec 2","default":"Total No Frost"},
+    {"id":"chip3","type":"string","label":"Spec 3","default":"368 L"},
+    {"id":"price","type":"string","label":"Precio (sin €)","default":"589"},
+    {"id":"discount","type":"string","label":"Descuento (%)","default":"20"},
+    {"id":"productImage","type":"string","label":"Foto de producto","default":"assets/balay-3kfe753xi.png"},
+    {"id":"cta","type":"string","label":"Llamada a la acción","default":"Ven a verlo a tu tienda Megahogar"}
+  ]'
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #ffffff;
+      }
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #ffffff;
+        font-family: "Oswald", sans-serif;
+        color: #1f2d5f;
+        --navy: #1f2d5f;
+        --orange: #e8541e;
+      }
+      #scene {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1080px;
+        height: 1920px;
+      }
+
+      /* Cabecera con ola */
+      #header {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1080px;
+        height: 520px;
+        z-index: 5;
+      }
+      .tag {
+        position: absolute;
+        z-index: 6;
+        font-weight: 700;
+        text-transform: uppercase;
+        line-height: 1;
+        white-space: nowrap;
+        transform-origin: left center;
+      }
+      #tag-a {
+        left: 56px;
+        top: 150px;
+        padding: 14px 34px 12px 30px;
+        background: var(--orange);
+        color: #fff;
+        font-size: 104px;
+        transform: rotate(-6deg);
+      }
+      #tag-b {
+        left: 90px;
+        top: 322px;
+        padding: 12px 34px 10px 30px;
+        background: #fff;
+        color: var(--navy);
+        font-size: 76px;
+        transform: rotate(-6deg);
+      }
+
+      /* Producto */
+      #product {
+        position: absolute;
+        left: 40px;
+        top: 520px;
+        width: 560px;
+        height: 880px;
+        object-fit: contain;
+        object-position: center bottom;
+        z-index: 2;
+      }
+
+      /* Columna derecha */
+      #info {
+        position: absolute;
+        left: 640px;
+        top: 560px;
+        width: 400px;
+        z-index: 3;
+      }
+      #category {
+        font-size: 62px;
+        font-weight: 700;
+        line-height: 1;
+      }
+      #brand {
+        font-size: 104px;
+        font-weight: 700;
+        line-height: 1;
+        text-transform: uppercase;
+        letter-spacing: 0.01em;
+        margin-top: 6px;
+      }
+      #model {
+        font-size: 46px;
+        font-weight: 700;
+        line-height: 1;
+        margin-top: 8px;
+        opacity: 0.75;
+        letter-spacing: 0.04em;
+      }
+      #chips {
+        margin-top: 34px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+      }
+      .chip {
+        background: var(--navy);
+        color: #fff;
+        font-weight: 700;
+        font-size: 48px;
+        line-height: 1;
+        padding: 15px 48px 13px 24px;
+        clip-path: polygon(0 0, calc(100% - 26px) 0, 100% 50%, calc(100% - 26px) 100%, 0 100%);
+        white-space: nowrap;
+        transform-origin: left center;
+      }
+
+      /* Precio + descuento */
+      #price-wrap {
+        position: absolute;
+        left: 480px;
+        top: 1140px;
+        width: 560px;
+        height: 300px;
+        z-index: 4;
+      }
+      #burst {
+        position: absolute;
+        left: 20px;
+        top: -50px;
+        width: 230px;
+        height: 230px;
+        background: var(--navy);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 62px;
+        line-height: 1;
+        padding-top: 4px;
+        transform-origin: center center;
+        z-index: 2;
+      }
+      #price {
+        position: absolute;
+        right: 0;
+        top: 90px;
+        font-size: 210px;
+        font-weight: 700;
+        line-height: 1;
+        color: var(--orange);
+        transform-origin: right center;
+        white-space: nowrap;
+        z-index: 3;
+      }
+
+      /* Cierre */
+      #cta {
+        position: absolute;
+        left: 0;
+        width: 1080px;
+        top: 1462px;
+        text-align: center;
+        font-size: 58px;
+        font-weight: 700;
+        line-height: 1;
+        z-index: 3;
+      }
+      #logo {
+        position: absolute;
+        left: 340px;
+        top: 1530px;
+        width: 400px;
+        z-index: 3;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="8"
+      data-width="1080"
+      data-height="1920"
+    >
+      <div id="scene" class="clip" data-start="0" data-duration="8" data-track-index="0">
+        <img id="product" data-var-src="productImage" src="assets/balay-3kfe753xi.png" alt="" />
+
+        <svg id="header" viewBox="0 0 1080 520" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M0,0 H1080 V60 C930,330 620,470 330,478 C200,482 90,486 0,470 Z"
+            fill="#1f2d5f"
+          />
+        </svg>
+        <div id="tag-a" class="tag">Liquidación</div>
+        <div id="tag-b" class="tag">Cambio exposición</div>
+
+        <div id="info">
+          <div id="category" data-var-text="category">Frigorífico</div>
+          <div id="brand" data-var-text="brand">Balay</div>
+          <div id="model" data-var-text="model">3KFE753XI</div>
+          <div id="chips">
+            <div class="chip" id="chip1" data-var-text="chip1">203x60 cm</div>
+            <div class="chip" id="chip2" data-var-text="chip2">Total No Frost</div>
+            <div class="chip" id="chip3" data-var-text="chip3">368 L</div>
+          </div>
+        </div>
+
+        <div id="price-wrap">
+          <div id="burst"><span>-</span><span data-var-text="discount">20</span><span>%</span></div>
+          <div id="price"><span data-var-text="price">589</span>€</div>
+        </div>
+
+        <div id="cta" data-var-text="cta">Ven a verlo a tu tienda Megahogar</div>
+        <img id="logo" src="assets/logo-megahogar.png" alt="Megahogar Electrodomésticos" />
+      </div>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const vars = window.__hyperframes.getVariables();
+
+      // Estrella de descuento (polígono de 16 puntas, determinista)
+      (function () {
+        const pts = [];
+        const n = 16;
+        for (let i = 0; i < n * 2; i++) {
+          const r = i % 2 === 0 ? 50 : 41;
+          const a = (Math.PI * i) / n - Math.PI / 2;
+          pts.push((50 + r * Math.cos(a)).toFixed(2) + "% " + (50 + r * Math.sin(a)).toFixed(2) + "%");
+        }
+        document.getElementById("burst").style.clipPath = "polygon(" + pts.join(",") + ")";
+      })();
+
+      // Contorno blanco del precio (text-shadow radial, sin artefactos de esquina)
+      (function () {
+        const sh = [];
+        [4, 8, 12].forEach(function (rad) {
+          for (let k = 0; k < 48; k++) {
+            const a = (Math.PI * 2 * k) / 48;
+            sh.push((rad * Math.cos(a)).toFixed(2) + "px " + (rad * Math.sin(a)).toFixed(2) + "px 0 #fff");
+          }
+        });
+        document.getElementById("price").style.textShadow = sh.join(",");
+      })();
+
+      // Specs vacías: se ocultan
+      const chips = ["chip1", "chip2", "chip3"]
+        .filter(function (id) {
+          const keep = String(vars[id] || "").trim().length > 0;
+          if (!keep) document.getElementById(id).style.display = "none";
+          return keep;
+        })
+        .map(function (id) {
+          return "#" + id;
+        });
+
+      const tl = gsap.timeline({ paused: true });
+
+      // 0.0 — Cabecera y etiquetas
+      tl.from("#header", { y: -560, duration: 0.55, ease: "power3.out" }, 0);
+      tl.from("#tag-a", { x: -900, duration: 0.55, ease: "back.out(1.4)" }, 0.12);
+      tl.from("#tag-b", { x: -900, duration: 0.55, ease: "back.out(1.4)" }, 0.28);
+
+      // 0.5 — Gancho: el descuento aparece enorme en el centro y luego se coloca
+      tl.fromTo(
+        "#burst",
+        { scale: 0, rotation: -25, x: -75, y: -245 },
+        { scale: 3.1, rotation: 0, x: -75, y: -245, duration: 0.5, ease: "back.out(1.8)" },
+        0.55
+      );
+      tl.to("#burst", { x: 0, y: 0, scale: 1, duration: 0.65, ease: "power3.inOut" }, 1.75);
+
+      // 1.7 — Producto
+      tl.from("#product", { y: 160, opacity: 0, duration: 0.7, ease: "power3.out" }, 1.7);
+
+      // 2.2 — Ficha
+      tl.from("#category", { x: 70, opacity: 0, duration: 0.45, ease: "power3.out" }, 2.2);
+      tl.from("#brand", { x: 70, opacity: 0, duration: 0.45, ease: "power3.out" }, 2.35);
+      tl.from("#model", { x: 70, opacity: 0, duration: 0.45, ease: "power3.out" }, 2.5);
+      chips.forEach(function (sel, i) {
+        tl.from(sel, { scaleX: 0, opacity: 0, duration: 0.4, ease: "back.out(1.6)" }, 2.7 + i * 0.17);
+      });
+
+      // 3.4 — Precio
+      tl.from("#price", { scale: 2.4, opacity: 0, duration: 0.45, ease: "expo.out" }, 3.4);
+      tl.to("#product", { y: -8, duration: 0.12, ease: "power1.out" }, 3.5);
+      tl.to("#product", { y: 0, duration: 0.25, ease: "power1.in" }, 3.62);
+
+      // 4.4 — Pulso del precio y flotación suave del producto
+      tl.to("#price", { scale: 1.06, duration: 0.5, ease: "sine.inOut", yoyo: true, repeat: 1 }, 4.5);
+      tl.to("#product", { y: -12, duration: 1.2, ease: "sine.inOut", yoyo: true, repeat: 1 }, 4.4);
+
+      // 5.8 — Cierre
+      tl.from("#cta", { y: 40, opacity: 0, duration: 0.5, ease: "power3.out" }, 5.8);
+      tl.from("#logo", { y: 40, opacity: 0, duration: 0.5, ease: "power3.out" }, 6.0);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

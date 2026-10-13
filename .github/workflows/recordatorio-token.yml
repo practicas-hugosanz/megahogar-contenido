@@ -1,0 +1,21 @@
+name: Recordatorio del token de Instagram
+
+on:
+  schedule:
+    - cron: "0 8 1,20 * *" # días 1 y 20 de cada mes
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+jobs:
+  recordatorio:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Abrir aviso
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create --repo "$GITHUB_REPOSITORY" \
+            --title "Renovar el token de Instagram" \
+            --body "El token de larga duración caduca a los 60 días. Renuévalo con \`node megahogar-reels/publish/instagram.mjs --refresh-token\` y actualiza el secret **IG_ACCESS_TOKEN** en Ajustes > Secrets and variables > Actions. Cierra este aviso cuando esté hecho."

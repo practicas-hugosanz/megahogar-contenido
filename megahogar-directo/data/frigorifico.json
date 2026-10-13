@@ -1,0 +1,139 @@
+{
+  "slug": "frigorifico",
+  "voice": "audio/frigorifico.mp3",
+  "total": 15.7,
+  "hook": {
+    "clip": "assets/stock/pexels-5418706.mp4",
+    "ms": 0.0,
+    "top": 880,
+    "size": 140,
+    "words": [
+      [
+        "¿Has",
+        0.0
+      ],
+      [
+        "comprado",
+        0.24
+      ],
+      [
+        "un",
+        0.56
+      ],
+      [
+        "frigorífico",
+        0.64
+      ],
+      [
+        "que",
+        1.36
+      ],
+      [
+        "luego",
+        1.52
+      ],
+      [
+        "no",
+        1.84
+      ],
+      [
+        "cabía?",
+        2.0
+      ]
+    ]
+  },
+  "twist": {
+    "wipe": 2.5,
+    "tag": [
+      "Spoiler",
+      2.6
+    ],
+    "rows": [
+      {
+        "kind": "big",
+        "text": "Pasa más de lo que crees.",
+        "t": 2.64,
+        "size": 190,
+        "stagger": 0.18
+      }
+    ]
+  },
+  "b3": {
+    "wipe": 4.15,
+    "clip": "assets/stock/pexels-6974071.mp4",
+    "ms": 0.5,
+    "rows": [
+      {
+        "kind": "small",
+        "text": "Antes de comprar, mide",
+        "t": 4.3
+      },
+      {
+        "kind": "big",
+        "text": "el hueco,",
+        "t": 5.85,
+        "size": 150
+      },
+      {
+        "kind": "big",
+        "text": "la puerta",
+        "t": 6.45,
+        "size": 150
+      },
+      {
+        "kind": "small",
+        "text": "de entrada",
+        "t": 6.95,
+        "size": 64
+      },
+      {
+        "kind": "hl",
+        "text": "y el pasillo.",
+        "t": 7.6,
+        "size": 140
+      }
+    ]
+  },
+  "b4": {
+    "wipe": 8.35,
+    "clip": "assets/stock/pexels-7127511.mp4",
+    "ms": 2.0,
+    "rows": [
+      {
+        "kind": "small",
+        "text": "Y mejor...",
+        "t": 8.5
+      },
+      {
+        "kind": "big",
+        "text": "No Frost.",
+        "t": 9.25,
+        "size": 190
+      },
+      {
+        "kind": "navy",
+        "text": "adiós a descongelar.",
+        "t": 10.3,
+        "size": 105
+      }
+    ]
+  },
+  "b5": {
+    "wipe": 11.75,
+    "rows": [
+      {
+        "kind": "big",
+        "text": "Guarda esto.",
+        "t": 11.9,
+        "size": 230
+      },
+      {
+        "kind": "small",
+        "text": "Tu cocina te lo agradecerá.",
+        "t": 12.9
+      }
+    ],
+    "handleT": 13.5,
+    "logoT": 14.0
+  }
+}

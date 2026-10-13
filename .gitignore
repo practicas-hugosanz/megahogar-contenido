@@ -1,0 +1,31 @@
+# Secretos y entorno
+.env
+**/publish/.env
+*.zip
+
+# Caches y temporales
+node_modules/
+.hyperframes/
+snapshots/
+**/audio/t_*/
+**/audio/w/
+**/audio/w_*/
+**/renders/manifest.json
+**/.debug/
+
+# Clips de stock (se descargan con fetch-stock.sh; la licencia de Pexels no permite redistribuirlos)
+**/assets/stock/*.mp4
+**/assets/stock/raw/
+
+# Renders: solo se guardan los Reels "directo" (los usa la publicación automática)
+**/renders/*.mp4
+!megahogar-directo/renders/directo-*.mp4
+
+# Versión anterior descartada (tarjetas); queda en local
+megahogar-tips/
+
+# Sistema
+Thumbs.db
+.DS_Store
+megahogar-directo/renders/*-real.mp4
+**/assets/src/

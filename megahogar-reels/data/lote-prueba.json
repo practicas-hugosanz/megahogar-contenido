@@ -1,0 +1,46 @@
+[
+  {
+    "category": "Frigorífico",
+    "brand": "Balay",
+    "model": "3KFE753XI",
+    "chip1": "203x60 cm",
+    "chip2": "Total No Frost",
+    "chip3": "368 L",
+    "price": "589",
+    "discount": "20",
+    "productImage": "assets/balay-3kfe753xi.png"
+  },
+  {
+    "category": "Lavadora",
+    "brand": "Bosch",
+    "model": "WUU28T63ES",
+    "chip1": "1400 RPM",
+    "chip2": "8 kg",
+    "chip3": "",
+    "price": "399",
+    "discount": "15",
+    "productImage": "assets/bosch-wuu28t63es.png"
+  },
+  {
+    "category": "Frigorífico",
+    "brand": "Becken",
+    "model": "BC4322IX",
+    "chip1": "185x60 cm",
+    "chip2": "No Frost",
+    "chip3": "323 L",
+    "price": "369",
+    "discount": "21",
+    "productImage": "assets/becken-bc4322ix.png"
+  },
+  {
+    "category": "Lavavajillas",
+    "brand": "Beko",
+    "model": "BDFN05330X",
+    "chip1": "60 cm",
+    "chip2": "13 cubiertos",
+    "chip3": "",
+    "price": "279",
+    "discount": "15",
+    "productImage": "assets/beko-bdfn05330x.png"
+  }
+]

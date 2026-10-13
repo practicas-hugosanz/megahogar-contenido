@@ -1,0 +1,39 @@
+{
+  "slug": "lavadora",
+  "voice": "audio/lavadora.mp3",
+  "total": 15.4,
+  "hook": {
+    "clip": "assets/stock/pexels-7086406.mp4", "ms": 3.4, "top": 1000, "size": 190,
+    "words": [["¿Tu", 0.0], ["lavadora", 0.24], ["huele", 0.64], ["a", 1.04], ["humedad?", 1.12]]
+  },
+  "twist": {
+    "wipe": 1.85, "tag": ["Spoiler", 2.0],
+    "rows": [{"kind": "big", "text": "No es la lavadora.", "t": 2.83, "size": 205, "stagger": 0.16}]
+  },
+  "b3": {
+    "wipe": 4.1, "clip": "assets/stock/pexels-8756952.mp4", "ms": 9.2,
+    "rows": [
+      {"kind": "small", "text": "Es que cierras", "t": 4.3},
+      {"kind": "strike", "text": "la puerta", "t": 4.95, "size": 160, "ts": 5.95},
+      {"kind": "big", "text": "del todo.", "t": 5.5, "size": 160},
+      {"kind": "small", "text": "Déjala", "t": 6.25},
+      {"kind": "hl", "text": "entreabierta.", "t": 6.65, "size": 140}
+    ]
+  },
+  "b4": {
+    "wipe": 8.4, "clip": "assets/stock/pexels-8756698.mp4", "ms": 3.0,
+    "rows": [
+      {"kind": "small", "text": "Y una vez al mes:", "t": 8.6},
+      {"kind": "big", "text": "Lavado en caliente", "t": 9.55, "size": 175, "stagger": 0.2},
+      {"kind": "navy", "text": "sin ropa.", "t": 10.85, "size": 170}
+    ]
+  },
+  "b5": {
+    "wipe": 11.7,
+    "rows": [
+      {"kind": "big", "text": "Guarda esto.", "t": 11.85, "size": 230},
+      {"kind": "small", "text": "Tu nariz te lo agradecerá.", "t": 12.7}
+    ],
+    "handleT": 13.3, "logoT": 13.8
+  }
+}

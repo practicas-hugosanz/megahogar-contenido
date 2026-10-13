@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1350" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1080px;
+        height: 1350px;
+        overflow: hidden;
+        background: #1f2d5f;
+      }
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1350px;
+        overflow: hidden;
+        font-family: "Oswald", sans-serif;
+        --navy: #1f2d5f;
+        --orange: #e8541e;
+        --sky: #bfcfff;
+      }
+      .slide {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1080px;
+        height: 1350px;
+      }
+      .dark {
+        background: var(--navy);
+        color: #fff;
+      }
+      .light {
+        background: var(--sky);
+        color: var(--navy);
+      }
+      .upper {
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+
+      /* Portada */
+      .kicker {
+        position: absolute;
+        left: 80px;
+        top: 200px;
+        background: var(--orange);
+        color: #fff;
+        font-size: 60px;
+        padding: 14px 30px 12px;
+        line-height: 1;
+        transform: rotate(-4deg);
+        transform-origin: left center;
+      }
+      .cover-title {
+        position: absolute;
+        left: 80px;
+        top: 340px;
+        width: 920px;
+        font-size: 150px;
+        line-height: 1.02;
+        white-space: nowrap;
+      }
+      .cover-sub {
+        position: absolute;
+        left: 80px;
+        top: 960px;
+        width: 900px;
+        font-size: 66px;
+        font-weight: 400;
+        color: var(--sky);
+        line-height: 1.15;
+      }
+      .swipe {
+        position: absolute;
+        left: 80px;
+        top: 1170px;
+        font-size: 56px;
+        color: #fff;
+      }
+      .swipe b {
+        color: var(--orange);
+      }
+
+      /* Tarjeta de tamaño */
+      .card {
+        position: absolute;
+        left: 60px;
+        top: 90px;
+        width: 960px;
+        height: 1060px;
+        background: #fff;
+        border-radius: 56px;
+        box-shadow: 0 22px 0 0 rgba(31, 45, 95, 0.18);
+      }
+      .lbl {
+        position: absolute;
+        left: 0;
+        width: 960px;
+        text-align: center;
+        font-size: 58px;
+        line-height: 1;
+      }
+      .dist {
+        position: absolute;
+        left: 0;
+        width: 960px;
+        text-align: center;
+        font-size: 210px;
+        line-height: 1;
+        color: var(--orange);
+      }
+      .size {
+        position: absolute;
+        left: 0;
+        width: 960px;
+        text-align: center;
+        font-size: 230px;
+        line-height: 1;
+        color: var(--navy);
+      }
+      .ill {
+        position: absolute;
+        left: 40px;
+        top: 760px;
+        width: 880px;
+        height: 260px;
+      }
+      .footer {
+        position: absolute;
+        left: 60px;
+        top: 1216px;
+        width: 960px;
+        height: 90px;
+      }
+      .footer img {
+        position: absolute;
+        left: 0;
+        top: 4px;
+        width: 250px;
+      }
+      .footer .pg {
+        position: absolute;
+        right: 0;
+        top: 12px;
+        font-size: 56px;
+        font-weight: 700;
+        line-height: 1;
+      }
+
+      /* Cierre */
+      .end-title {
+        position: absolute;
+        left: 80px;
+        top: 220px;
+        width: 920px;
+        font-size: 150px;
+        line-height: 1.02;
+      }
+      .end-sub {
+        position: absolute;
+        left: 80px;
+        top: 780px;
+        width: 900px;
+        font-size: 62px;
+        font-weight: 400;
+        color: var(--sky);
+        line-height: 1.2;
+      }
+      .end-handle {
+        position: absolute;
+        left: 80px;
+        top: 1020px;
+        background: #fff;
+        color: var(--orange);
+        font-size: 96px;
+        padding: 6px 32px 4px;
+        line-height: 1.1;
+        transform: rotate(-3deg);
+        transform-origin: left center;
+      }
+      .end-logo {
+        position: absolute;
+        left: 80px;
+        top: 1190px;
+        width: 330px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="6" data-width="1080" data-height="1350">
+      <!-- 1 Portada -->
+      <div id="slide1" class="slide dark clip" data-start="0" data-duration="1" data-track-index="0">
+        <div class="kicker upper">Guía rápida</div>
+        <div class="cover-title upper">¿Qué tamaño<br />de TV<br />elegir?</div>
+        <div class="cover-sub">Según la distancia a tu sofá</div>
+        <div class="swipe upper">Desliza <b>&rarr;</b></div>
+      </div>
+
+      <!-- 2 -->
+      <div id="slide2" class="slide light clip" data-start="1" data-duration="1" data-track-index="0">
+        <div class="card">
+          <div class="lbl upper" style="top: 70px">Si tu sofá está a</div>
+          <div class="dist" style="top: 130px">1,5 – 2 m</div>
+          <div class="lbl upper" style="top: 400px">Elige una tele de</div>
+          <div class="size upper" style="top: 460px">50” – 55”</div>
+          <svg class="ill" viewBox="0 0 880 260" xmlns="http://www.w3.org/2000/svg">
+            <rect x="40" y="130" width="240" height="90" rx="22" fill="#e8541e" />
+            <rect x="30" y="110" width="50" height="110" rx="20" fill="#c5410f" />
+            <rect x="240" y="110" width="50" height="110" rx="20" fill="#c5410f" />
+            <line x1="330" y1="180" x2="560" y2="180" stroke="#1f2d5f" stroke-width="8" stroke-linecap="round" />
+            <polygon points="330,180 352,166 352,194" fill="#1f2d5f" />
+            <polygon points="560,180 538,166 538,194" fill="#1f2d5f" />
+            <rect x="620" y="70" width="220" height="130" rx="8" fill="#2b2f3a" />
+            <rect x="710" y="200" width="40" height="22" fill="#2b2f3a" />
+            <rect x="670" y="222" width="120" height="10" rx="5" fill="#2b2f3a" />
+          </svg>
+        </div>
+        <div class="footer"><img src="assets/logo-megahogar.png" alt="" /><div class="pg">2 / 6</div></div>
+      </div>
+
+      <!-- 3 -->
+      <div id="slide3" class="slide light clip" data-start="2" data-duration="1" data-track-index="0">
+        <div class="card">
+          <div class="lbl upper" style="top: 70px">Si tu sofá está a</div>
+          <div class="dist" style="top: 130px">2 – 2,5 m</div>
+          <div class="lbl upper" style="top: 400px">Elige una tele de</div>
+          <div class="size upper" style="top: 460px">60” – 65”</div>
+          <svg class="ill" viewBox="0 0 880 260" xmlns="http://www.w3.org/2000/svg">
+            <rect x="30" y="130" width="240" height="90" rx="22" fill="#e8541e" />
+            <rect x="20" y="110" width="50" height="110" rx="20" fill="#c5410f" />
+            <rect x="230" y="110" width="50" height="110" rx="20" fill="#c5410f" />
+            <line x1="320" y1="180" x2="530" y2="180" stroke="#1f2d5f" stroke-width="8" stroke-linecap="round" />
+            <polygon points="320,180 342,166 342,194" fill="#1f2d5f" />
+            <polygon points="530,180 508,166 508,194" fill="#1f2d5f" />
+            <rect x="580" y="50" width="270" height="150" rx="8" fill="#2b2f3a" />
+            <rect x="695" y="200" width="40" height="22" fill="#2b2f3a" />
+            <rect x="650" y="222" width="130" height="10" rx="5" fill="#2b2f3a" />
+          </svg>
+        </div>
+        <div class="footer"><img src="assets/logo-megahogar.png" alt="" /><div class="pg">3 / 6</div></div>
+      </div>
+
+      <!-- 4 -->
+      <div id="slide4" class="slide light clip" data-start="3" data-duration="1" data-track-index="0">
+        <div class="card">
+          <div class="lbl upper" style="top: 70px">Si tu sofá está a</div>
+          <div class="dist" style="top: 130px">2,5 – 3 m</div>
+          <div class="lbl upper" style="top: 400px">Elige una tele de</div>
+          <div class="size upper" style="top: 460px">70” – 75”</div>
+          <svg class="ill" viewBox="0 0 880 260" xmlns="http://www.w3.org/2000/svg">
+            <rect x="20" y="130" width="240" height="90" rx="22" fill="#e8541e" />
+            <rect x="10" y="110" width="50" height="110" rx="20" fill="#c5410f" />
+            <rect x="220" y="110" width="50" height="110" rx="20" fill="#c5410f" />
+            <line x1="305" y1="180" x2="500" y2="180" stroke="#1f2d5f" stroke-width="8" stroke-linecap="round" />
+            <polygon points="305,180 327,166 327,194" fill="#1f2d5f" />
+            <polygon points="500,180 478,166 478,194" fill="#1f2d5f" />
+            <rect x="540" y="30" width="320" height="170" rx="8" fill="#2b2f3a" />
+            <rect x="680" y="200" width="40" height="22" fill="#2b2f3a" />
+            <rect x="630" y="222" width="140" height="10" rx="5" fill="#2b2f3a" />
+          </svg>
+        </div>
+        <div class="footer"><img src="assets/logo-megahogar.png" alt="" /><div class="pg">4 / 6</div></div>
+      </div>
+
+      <!-- 5 -->
+      <div id="slide5" class="slide light clip" data-start="4" data-duration="1" data-track-index="0">
+        <div class="card">
+          <div class="lbl upper" style="top: 70px">Si tu sofá está a más de</div>
+          <div class="dist" style="top: 130px">3,5 m</div>
+          <div class="lbl upper" style="top: 400px">Elige una tele de</div>
+          <div class="size upper" style="top: 500px; font-size: 175px; white-space: nowrap">85” o más</div>
+          <svg class="ill" viewBox="0 0 880 260" xmlns="http://www.w3.org/2000/svg">
+            <rect x="10" y="130" width="220" height="90" rx="22" fill="#e8541e" />
+            <rect x="0" y="110" width="46" height="110" rx="20" fill="#c5410f" />
+            <rect x="196" y="110" width="46" height="110" rx="20" fill="#c5410f" />
+            <line x1="270" y1="180" x2="450" y2="180" stroke="#1f2d5f" stroke-width="8" stroke-linecap="round" />
+            <polygon points="270,180 292,166 292,194" fill="#1f2d5f" />
+            <polygon points="450,180 428,166 428,194" fill="#1f2d5f" />
+            <rect x="490" y="10" width="380" height="190" rx="8" fill="#2b2f3a" />
+            <rect x="660" y="200" width="40" height="22" fill="#2b2f3a" />
+            <rect x="610" y="222" width="140" height="10" rx="5" fill="#2b2f3a" />
+          </svg>
+        </div>
+        <div class="footer"><img src="assets/logo-megahogar.png" alt="" /><div class="pg">5 / 6</div></div>
+      </div>
+
+      <!-- 6 Cierre -->
+      <div id="slide6" class="slide dark clip" data-start="5" data-duration="1" data-track-index="0">
+        <div class="end-title upper">Guárdalo para cuando elijas tu tele</div>
+        <div class="end-sub">Y pregúntanos sin compromiso en tu tienda Megahogar o en megahogar.es</div>
+        <div class="end-handle upper">@megahogar.es</div>
+        <img class="end-logo" src="assets/logo-megahogar.png" alt="Megahogar Electrodomésticos" />
+      </div>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      tl.set("#root", { opacity: 1 }, 0);
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

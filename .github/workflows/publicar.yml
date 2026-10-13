@@ -1,0 +1,56 @@
+name: Publicar Reels aprobados
+
+on:
+  schedule:
+    - cron: "5 * * * *" # cada hora, al minuto 5
+  workflow_dispatch:
+    inputs:
+      simulacion:
+        description: "Solo simular: muestra lo que se publicaría, sin publicar"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publicar
+  cancel-in-progress: false
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Validar la cola
+        run: node megahogar-reels/publish/validate-queue.mjs
+
+      - name: Publicar lo aprobado cuya hora ya ha llegado
+        env:
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          SIMULACION: ${{ github.event_name == 'workflow_dispatch' && inputs.simulacion }}
+        run: |
+          if [ "$SIMULACION" = "true" ]; then
+            echo "Modo simulación"
+            node megahogar-reels/publish/instagram.mjs --due
+          elif [ -z "$IG_USER_ID" ] || [ -z "$IG_ACCESS_TOKEN" ]; then
+            echo "::warning::Faltan los secrets IG_USER_ID e IG_ACCESS_TOKEN. No se publica nada."
+          else
+            node megahogar-reels/publish/instagram.mjs --due --publish --max 1
+          fi
+
+      - name: Guardar el estado de la cola
+        run: |
+          git config user.name "megahogar-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add megahogar-reels/publish/queue.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Actualiza el estado de la cola de publicación"
+            git push
+          fi

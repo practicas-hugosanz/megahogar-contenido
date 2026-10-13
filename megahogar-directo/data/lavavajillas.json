@@ -1,0 +1,137 @@
+{
+  "slug": "lavavajillas",
+  "voice": "audio/lavavajillas.mp3",
+  "total": 13.5,
+  "hook": {
+    "clip": "assets/stock/pexels-7292490.mp4",
+    "ms": 2.0,
+    "top": 880,
+    "size": 135,
+    "words": [
+      [
+        "¿Aclaras",
+        0.0
+      ],
+      [
+        "los",
+        0.64
+      ],
+      [
+        "platos",
+        0.8
+      ],
+      [
+        "antes",
+        1.12
+      ],
+      [
+        "de",
+        1.28
+      ],
+      [
+        "meterlos",
+        1.36
+      ],
+      [
+        "en",
+        1.76
+      ],
+      [
+        "el",
+        1.92
+      ],
+      [
+        "lavavajillas?",
+        2.0
+      ]
+    ]
+  },
+  "twist": {
+    "wipe": 3.1,
+    "tag": [
+      "Spoiler",
+      3.25
+    ],
+    "rows": [
+      {
+        "kind": "big",
+        "text": "No hace falta.",
+        "t": 4.2,
+        "size": 230,
+        "stagger": 0.2
+      }
+    ]
+  },
+  "b3": {
+    "wipe": 5.2,
+    "clip": "assets/stock/pexels-9474125.mp4",
+    "ms": 1.0,
+    "rows": [
+      {
+        "kind": "small",
+        "text": "Solo quita",
+        "t": 5.4
+      },
+      {
+        "kind": "big",
+        "text": "los restos",
+        "t": 6.0,
+        "size": 165
+      },
+      {
+        "kind": "hl",
+        "text": "grandes.",
+        "t": 6.4,
+        "size": 165
+      },
+      {
+        "kind": "small",
+        "text": "Y listo.",
+        "t": 7.0
+      }
+    ]
+  },
+  "b4": {
+    "wipe": 7.45,
+    "clip": "assets/stock/pexels-9462909.mp4",
+    "ms": 1.0,
+    "rows": [
+      {
+        "kind": "small",
+        "text": "Y...",
+        "t": 7.6
+      },
+      {
+        "kind": "big",
+        "text": "limpia el filtro",
+        "t": 7.75,
+        "size": 170,
+        "stagger": 0.25
+      },
+      {
+        "kind": "navy",
+        "text": "con regularidad.",
+        "t": 8.8,
+        "size": 130
+      }
+    ]
+  },
+  "b5": {
+    "wipe": 9.65,
+    "rows": [
+      {
+        "kind": "big",
+        "text": "Guarda esto.",
+        "t": 9.8,
+        "size": 230
+      },
+      {
+        "kind": "small",
+        "text": "Tus platos te lo agradecerán.",
+        "t": 10.7
+      }
+    ],
+    "handleT": 11.4,
+    "logoT": 11.9
+  }
+}
