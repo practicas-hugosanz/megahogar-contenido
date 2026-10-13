@@ -50,8 +50,7 @@ Opciones: `-Yes` (no pregunta), `-SinModelos`, `-SinClips`, `-Destino <carpeta>`
 | Carpeta | Para qué sirve |
 |---|---|
 | `CLAUDE.md` | Instrucciones que Claude lee solo: marca, estrategia, flujo y reglas. |
-| `CALENDARIO.md` | Qué se publica y cuándo. |
-| `REVISION-TIPS.md` | Afirmaciones que alguien de la tienda debe validar. |
+| `REVISION.md` | Afirmaciones que alguien de la tienda debe validar antes de publicar. |
 | `megahogar-directo/` | **Reels de tips con vídeo real, voz y sonido.** Plantilla principal. |
 | `megahogar-reels/` | Reels de ofertas (precio y descuento) y la herramienta que publica en Instagram (`publish/`). |
 | `megahogar-carrusel/` | Carrusel de 6 diapositivas del tamaño de TV (se sube a mano). |

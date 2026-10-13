@@ -1,34 +1,29 @@
-# Megahogar · Reels automáticos
+# Reels de ofertas y publicación en Instagram
 
-## Generar vídeos
-1. Edita `data/lote-prueba.json` (una fila por producto: categoría, marca, modelo, chips, precio, descuento, foto).
-2. Renderiza desde una **ruta corta** (la ruta de esta carpeta puede ser demasiado larga para el renderizador):
-   ```
-   npx hyperframes render --batch data/lote-prueba.json --strict-variables --fps 30 --quality delivery --output "renders/reel-{index}-{brand}.mp4"
-   ```
-   Si da `ENAMETOOLONG`, copia el proyecto a `C:\hf\mh` y renderiza allí.
-3. La plantilla es `index.html`; vista previa con `npx hyperframes preview`.
+## Reels de ofertas (esta carpeta)
+Plantilla de vídeo de oferta (producto, ficha, precio y descuento). Los datos están en `data/lote-prueba.json` (una fila por producto).
 
-## Publicar en Instagram (API oficial "Instagram API with Instagram Login")
-La cuenta debe ser **Profesional** (Empresa o Creador). No hace falta página de Facebook.
+```
+npx hyperframes render --batch data/lote-prueba.json --strict-variables --fps 30 --quality delivery --output "renders/reel-{index}-{brand}.mp4"
+```
+Si da `ENAMETOOLONG`, copia el proyecto a una ruta corta (por ejemplo `C:\hf\mh`) y renderiza allí. Confirma precios y descuentos antes de publicar.
 
-1. En https://developers.facebook.com crea una app de tipo **Empresa**, añade el producto **Instagram** y, en *Roles → Instagram testers*, añade @megahogar.es y acepta la invitación desde Instagram (Configuración → Sitio web y herramientas → Invitaciones).
-2. En *Instagram → Configuración de la API con inicio de sesión de Instagram* genera el **token de acceso** de @megahogar.es con los permisos `instagram_business_basic` e `instagram_business_content_publish`. Anota también el **ID de la cuenta de Instagram**.
-3. Copia `publish/.env.example` a `publish/.env` y rellena `IG_USER_ID` e `IG_ACCESS_TOKEN`. Ese archivo no se comparte con nadie.
-4. Flujo:
-   ```
-   node publish/build-queue.mjs --start 2026-10-14 --hour 19 --every 2   # crea la cola (estado draft)
-   node publish/instagram.mjs --list                                      # revisa fechas y vídeos; edita textos en publish/queue.json
-   node publish/instagram.mjs --approve all                               # aprueba lo revisado
-   node publish/instagram.mjs --due                                       # simulación
-   node publish/instagram.mjs --due --publish                             # publica de verdad lo aprobado y vencido
-   ```
-5. Automático: `powershell -ExecutionPolicy Bypass -File publish\schedule-windows.ps1` (revisa cada hora; el PC debe estar encendido).
-6. El token dura ~60 días: renuévalo con `node publish/instagram.mjs --refresh-token` y actualiza `.env`.
+## Publicación en Instagram (`publish/`)
+Usa la API oficial "Instagram API with Instagram Login". La cuenta debe ser **Profesional** (Empresa o Creador); no hace falta página de Facebook.
 
-Nada se publica sin estado `approved` y sin `--publish`.
+### Puesta en marcha (una vez)
+1. En https://developers.facebook.com crea una app de tipo **Empresa**, añade el producto **Instagram** y, en *Roles > Instagram testers*, añade @megahogar.es y acepta la invitación desde Instagram.
+2. En *Instagram > Configuración de la API con inicio de sesión de Instagram* genera el **token** con los permisos `instagram_business_basic` e `instagram_business_content_publish`, y anota el **ID de la cuenta**.
+3. En el repositorio de GitHub: *Settings > Secrets and variables > Actions*, crea los secretos `IG_USER_ID` e `IG_ACCESS_TOKEN`. Nunca los escribas en archivos ni en un chat.
 
-## Pendiente de revisar antes de publicar
-- Precios y descuentos del lote de prueba (copiados del vídeo de liquidación). La web muestra la Bosch WUU28T63ES a 459,50 €, frente a 399 € del vídeo.
-- Fotos de producto de más resolución (las de la web son 500x500).
-- Música: los vídeos van sin audio.
+### Cómo se publica
+- La cola está en `publish/queue.json`. Cada pieza tiene `video`, `caption`, `scheduled_at` (UTC) y `status` (`draft`, `approved`, `published` o `failed`).
+- Una pieza se aprueba cambiando su estado a `approved` y fusionando el cambio. GitHub Actions (`.github/workflows/publicar.yml`) publica cada hora la primera pieza aprobada cuya hora ya haya llegado.
+- Comprobar la cola: `node publish/validate-queue.mjs`.
+- Probar sin publicar: pestaña *Actions > Publicar Reels aprobados > Run workflow* con simulación activada.
+
+### Uso local (opcional)
+Copia `publish/.env.example` a `publish/.env` y rellénalo. Después: `node publish/instagram.mjs --list`, `--approve all`, `--due` (simulación) y `--due --publish`.
+
+### Token
+Caduca a los 60 días. Renuévalo con `node publish/instagram.mjs --refresh-token` y actualiza el secreto `IG_ACCESS_TOKEN`. El repositorio abre un aviso los días 1 y 20 de cada mes.

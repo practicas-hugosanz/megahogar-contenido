@@ -18,9 +18,8 @@ Proyecto para crear y publicar contenido de redes de **Megahogar Electrodomésti
 |---|---|
 | `megahogar-directo/` | **Plantilla principal.** Reels con texto cinético + vídeo real + voz + sonido. |
 | `megahogar-reels/` | Plantilla de Reel de **ofertas** (producto, precio, descuento) y la herramienta de publicación en `publish/`. |
-| `megahogar-tips/` | Versión anterior de tips con tarjetas (descartada; no está en GitHub). |
 | `megahogar-carrusel/` | Carrusel de 6 diapositivas (PNG 1080x1350) sobre el tamaño de TV. |
-| `CALENDARIO.md`, `REVISION-TIPS.md` | Calendario de publicación y comprobaciones de contenido. |
+| `REVISION.md` | Afirmaciones que la tienda debe validar antes de publicar. |
 
 ## Flujo para un Reel "directo" nuevo (megahogar-directo)
 1. Guion corto (≈ 40 palabras) con gancho, giro, 2 consejos y cierre. Humor ligero. Revisar que los consejos sean ciertos.
@@ -32,8 +31,8 @@ Proyecto para crear y publicar contenido de redes de **Megahogar Electrodomésti
 7. Añadir caption y fecha a `megahogar-reels/publish/queue.json` (estado `draft`).
 
 ## Publicación en Instagram
-- Herramienta: `megahogar-reels/publish/` (`instagram.mjs`, `build-queue.mjs`, `schedule-windows.ps1`). Guía en `megahogar-reels/LEEME.md`.
-- API oficial "Instagram API with Instagram Login". Requiere cuenta Profesional y token en `publish/.env` (lo crea y guarda **la persona dueña de la cuenta**; Claude nunca debe pedirlo ni escribirlo).
+- Herramienta: `megahogar-reels/publish/` (`instagram.mjs`, `validate-queue.mjs`). Guía en `megahogar-reels/LEEME.md`.
+- API oficial "Instagram API with Instagram Login". Requiere cuenta Profesional y token en los secretos del repositorio (o en `publish/.env` solo para uso local) (lo crea y guarda **la persona dueña de la cuenta**; Claude nunca debe pedirlo ni escribirlo).
 - Nada se publica sin estado `approved` y sin `--publish`. Los carruseles aún se publican a mano.
 
 ## GitHub
