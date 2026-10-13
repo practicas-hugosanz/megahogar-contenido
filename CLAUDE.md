@@ -40,8 +40,6 @@ Proyecto para crear y publicar contenido de redes de **Megahogar Electrodomésti
 - `.github/workflows/publicar.yml` publica cada hora lo aprobado y vencido usando los secrets `IG_USER_ID` e `IG_ACCESS_TOKEN` (los pone una persona, nunca Claude).
 - Los clips de stock no se suben (`megahogar-directo/fetch-stock.sh` los descarga). Antes de hacer commit, comprobar que no hay claves, tokens ni rutas personales.
 
-- Panel web (solo lectura) en `docs/index.html`, publicado en https://practicas-hugosanz.github.io/megahogar-contenido/. Se reconstruye con `node scripts/build-site.mjs` al cambiar la cola o los vídeos.
-
 ## Reglas
 - No publicar ni enviar nada en nombre de la tienda sin confirmación expresa.
 - No descargar archivos sin permiso del usuario (indicar nombre, origen y tamaño).
